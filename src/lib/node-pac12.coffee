@@ -10,5 +10,9 @@ Licensed under the MIT license.
 
 'use strict'
 
-exports.awesome = ()->
-  'awesome'
+events = require './v1/events'
+
+exports.v1 = {
+  events: (appId) ->
+    new events appId
+}
