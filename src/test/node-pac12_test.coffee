@@ -20,3 +20,9 @@ describe 'Node PAC-12 API', ->
         (->
           node_pac12.v1.events()
         ).should.throwError(/You must provide an APP ID/)
+
+      it 'should accept an optional domain', ->
+        node_pac12.v1.events('app-id', 'domain').getDomain().match /domain/
+
+      it 'should have a default domain', ->
+        node_pac12.v1.events('app-id').getDomain().match /api.schedules.pac-12.com/

@@ -13,6 +13,6 @@ Licensed under the MIT license.
 events = require './v1/events'
 
 exports.v1 = {
-  events: (appId) ->
-    new events appId
+  events: (appId, domain) ->
+    new events appId, domain
 }
