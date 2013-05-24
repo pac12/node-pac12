@@ -1,0 +1,1 @@
+{"errors":[{"message":"APP_NO_PERMISSIONS"}]}
