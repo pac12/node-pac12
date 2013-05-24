@@ -19,18 +19,26 @@ module.exports = (grunt)->
             src: ['**/*.js']
             dest: 'out/'
         ]
+      testReplies:
+        files: [
+            expand: true
+            cwd: 'src/test/'
+            src: ['**/*.txt']
+            dest: 'out/test/'
+        ]
     coffeelint:
       gruntfile:
         src: 'Gruntfile.coffee'
       lib:
-        src: ['src/lib/*.coffee']
+        src: ['src/lib/**/*.coffee']
       test:
-        src: ['src/test/*.coffee']
+        src: ['src/test/**/*.coffee']
       options:
         no_trailing_whitespace:
           level: 'error'
         max_line_length:
           level: 'warn'
+          value: 120
     coffee:
       #compile:
       #  files:
@@ -99,4 +107,3 @@ module.exports = (grunt)->
     'compile'
     'simplemocha'
   ]
-
