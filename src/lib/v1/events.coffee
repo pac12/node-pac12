@@ -1,11 +1,12 @@
 http = require 'http'
+https = require 'https'
 querystring = require 'querystring'
 
 class Events
   version: 1
   format: 'json'
 
-  constructor: (@appId, @domain = "api.schedules.pac-12.com") ->
+  constructor: (@appId, @domain = "api.schedules.pac-12.com", @https = false) ->
     if (not appId)
       throw new Error 'You must provide an APP ID'
 
@@ -20,6 +21,9 @@ class Events
 
   getDomain: ->
     return this.domain
+
+  getHttps: ->
+    return this.https
 
   getResource: (pattern, params, callback) ->
     if typeof params is 'function'
@@ -41,7 +45,8 @@ class Events
       path: "/v#{@version}#{pattern}?#{querystring.stringify(params)}"
 
   performHttpGet: (options, callback) ->
-    req = http.get options, (res) =>
+    protocol = if this.https then https else http
+    req = protocol.get options, (res) =>
       res.setEncoding('utf8')
       data = ''
 

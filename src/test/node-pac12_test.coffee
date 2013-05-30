@@ -26,3 +26,9 @@ describe 'Node PAC-12 API', ->
 
       it 'should have a default domain', ->
         node_pac12.v1.events('app-id').getDomain().match /api.schedules.pac-12.com/
+
+      it 'should accept an optional flag for https', ->
+        node_pac12.v1.events('app-id', 'domain', true).getHttps().should.be.true
+
+      it 'should default to http', ->
+        node_pac12.v1.events('app-id').getHttps().should.be.false
