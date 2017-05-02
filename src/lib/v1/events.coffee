@@ -2,16 +2,16 @@ http = require 'http'
 https = require 'https'
 querystring = require 'querystring'
 
-class Events
-  version: 1
-  format: 'json'
 
-  constructor: (@appId, @domain = "api.schedules.pac-12.com", @https = false) ->
-    if (not appId)
+class Events
+  version: 3
+  format: 'json'
+  constructor: (@appId, @domain = "api.pac-12.com", @https = false) ->
+    if (not @appId)
       throw new Error 'You must provide an APP ID'
 
   list: (params, callback) ->
-    this.getResource '/events/list', params, callback
+    this.getResource '/events', params, callback
 
   ###
 
